@@ -2,7 +2,6 @@
 using code_maze_cosmosdb.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace code_maze_cosmosdb.Controllers
