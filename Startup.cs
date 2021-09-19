@@ -27,6 +27,8 @@ namespace code_maze_cosmosdb
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "code_maze_cosmosdb", Version = "v1" });
             });
+
+            //scoped or singleton?
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb")).GetAwaiter().GetResult());
         }
 
