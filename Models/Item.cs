@@ -1,12 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace code_maze_cosmosdb.Models
 {
     public class Item
     {
-        [JsonPropertyName("id")]
-     
-        //NB NB id is with SMALL CAPITILIZATION - otherwise it wont work!!!
+        [JsonProperty(PropertyName ="id")]
+        //NB NB id is with SMALL CAPITILIZATION - (otherwise it wont work!!!) - NOTE the ref to Newtonsoft instead of .Core json serializer
         public string id { get; set; }
 
         [JsonPropertyName("name")]
