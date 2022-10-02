@@ -9,7 +9,7 @@ namespace code_maze_cosmosdb.Services
         Task<IEnumerable<Item>> GetMultipleAsync(string query);
         Task<Item> GetAsync(string id);
         Task AddAsync(Item item);
-        Task UpdateAsync(string id, Item item);
+        Task UpdateAsync(string id, Item Updateitem);
         Task DeleteAsync(string id);
     }
 }

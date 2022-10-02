@@ -1,4 +1,5 @@
-﻿using code_maze_cosmosdb.Models;
+﻿using Azure;
+using code_maze_cosmosdb.Models;
 using Microsoft.Azure.Cosmos;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,15 +31,16 @@ namespace code_maze_cosmosdb.Services
 
         public async Task<Item> GetAsync(string id)
         {
+
+            ItemResponse<Item> response = null;
             try
             {
-                var response = await _container.ReadItemAsync<Item>(id, new PartitionKey(id));
-                return response.Resource;
+                response = await _container.ReadItemAsync<Item>(id, new PartitionKey(id));
             }
-            catch (CosmosException) //For handling item not found and other exceptions
-            {
-                return null;
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound) {
+                //log(ex.Message)}
             }
+            return response;
         }
 
         public async Task<IEnumerable<Item>> GetMultipleAsync(string queryString)
